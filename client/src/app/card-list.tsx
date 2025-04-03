@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Card from "@/components/card";
 import { retrieveCarData } from "@/services/car";
 import { Car } from "@/types/car";
