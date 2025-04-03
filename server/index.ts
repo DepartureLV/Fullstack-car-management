@@ -1,5 +1,6 @@
 import express, { Request } from "express";
 import { PrismaClient } from "./generated/prisma";
+import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 
 const app = express();
@@ -17,11 +18,13 @@ app.get("/cars", async (_req, res) => {
 // Upsert car
 app.post("/cars", async (req, res) => {
   const {
+    id,
     carRegistrationNum,
     carModel,
     carBrand,
     notes,
   }: {
+    id?: string;
     carRegistrationNum: string;
     carModel: string;
     carBrand: string;
@@ -29,9 +32,10 @@ app.post("/cars", async (req, res) => {
   } = req.body;
 
   try {
+    const cid = id ? id : uuidv4();
     const createCar = await prisma.car.upsert({
       where: {
-        carRegistrationNum,
+        id: cid,
       },
       update: {
         carRegistrationNum,
@@ -40,6 +44,7 @@ app.post("/cars", async (req, res) => {
         notes,
       },
       create: {
+        id: cid,
         carRegistrationNum,
         carBrand,
         carModel,
@@ -60,7 +65,7 @@ app.delete("/cars/:id", async (req: Request<{ id: string }>, res) => {
   try {
     const deleteCar = await prisma.car.delete({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
     res.status(200).send({ data: deleteCar, err: false });
