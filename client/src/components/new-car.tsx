@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { Car } from "@/types/car";
+import { upsertCarData } from "@/services/carFormHandlers";
 import Form from "./form";
 import { FormFieldProps } from "./form-field";
 import { handleUpsertCarData } from "@/services/carFormHandlers";
@@ -77,7 +78,13 @@ export default function NewCar() {
     e.preventDefault();
 
     try {
-      await handleUpsertCarData(newCarData);
+      await upsertCarData(newCarData);
+      setNewCarData({
+        carRegistrationNum: "",
+        carBrand: "",
+        carModel: "",
+        notes: "",
+      });
     } catch (error) {
       console.error(error);
     }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Car } from "@/types/car";
+import { upsertCarData } from "@/services/carFormHandlers";
 import {
   Dialog,
   DialogContent,
@@ -75,9 +76,7 @@ export default function Card({ data }: { data: Car }) {
     e.preventDefault();
 
     try {
-      await handleUpsertCarData(updatedCarData);
-
-      setCarData(updatedCarData);
+      await upsertCarData(updatedCarData);
     } catch (error) {
       console.error(error);
     }
@@ -86,13 +85,13 @@ export default function Card({ data }: { data: Car }) {
   return (
     <div className="flex flex-col bg-blue-700 p-4 rounded-lg text-white w-full">
       <h1 className="text-xl p-0 m-0 font-semibold">
-        {carData.carBrand} {carData.carModel}
+        {data.carBrand} {data.carModel}
       </h1>
       <p>
         car registration number:{" "}
-        <b className="text-bold">{carData.carRegistrationNum}</b>
+        <b className="text-bold">{data.carRegistrationNum}</b>
       </p>
-      {carData.notes && <p>{carData.notes}</p>}
+      {data.notes && <p>{data.notes}</p>}
 
       <Dialog>
         <DialogTrigger>Edit</DialogTrigger>

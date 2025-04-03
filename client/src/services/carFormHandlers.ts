@@ -1,10 +1,13 @@
+"use server";
+
 import { Car } from "@/types/car";
+import { revalidatePath } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-export const handleUpsertCarData = async (
+export const upsertCarData = async (
   carData: Car
-): Promise<{ data: Car; error: boolean } | void> => {
+): Promise<void> => {
   try {
     const payload = {
       ...carData,
@@ -18,11 +21,10 @@ export const handleUpsertCarData = async (
       body: JSON.stringify(payload),
     });
 
+    revalidatePath("/cars");
+
     if (!resp.ok) throw Error;
 
-    const data = (await resp.json()) as Car;
-
-    return { data: data, error: false };
   } catch (error) {
     console.error(error);
     throw error;
