@@ -1,0 +1,102 @@
+"use client";
+
+import { useState } from "react";
+import {
+  DialogHeader,
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
+import { Car } from "@/types/car";
+import Form from "./form";
+import { FormFieldProps } from "./form-field";
+import { handleUpsertCarData } from "@/services/carFormHandlers";
+
+export default function NewCar() {
+  const [newCarData, setNewCarData] = useState<Omit<Car, "id">>({
+    carRegistrationNum: "",
+    carBrand: "",
+    carModel: "",
+    notes: "",
+  });
+
+  const carFormFields: FormFieldProps[] = [
+    {
+      id: "registration-number",
+      label: "Car registration number",
+      type: "text",
+      placeholder: "AB 123",
+      value: newCarData.carRegistrationNum,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setNewCarData({
+          ...newCarData,
+          carRegistrationNum: e.target.value,
+        }),
+    },
+    {
+      id: "brand",
+      label: "Car brand",
+      type: "text",
+      placeholder: "Haup",
+      value: newCarData.carBrand,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setNewCarData({
+          ...newCarData,
+          carBrand: e.target.value,
+        }),
+    },
+    {
+      id: "model",
+      label: "Car model",
+      type: "text",
+      placeholder: "X20",
+      value: newCarData.carModel,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setNewCarData({
+          ...newCarData,
+          carModel: e.target.value,
+        }),
+    },
+    {
+      id: "notes",
+      label: "Notes",
+      type: "text",
+      placeholder: "",
+      value: newCarData.notes || "",
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+        setNewCarData({
+          ...newCarData,
+          notes: e.target.value,
+        }),
+    },
+  ];
+
+  const handleSubmitCarData = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await handleUpsertCarData(newCarData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger>New</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle className="text-2xl md:text-5xl">
+            Add new car
+          </DialogTitle>
+          <DialogDescription>
+            Add a new car to your collection
+          </DialogDescription>
+          <Form fields={carFormFields} handleSubmit={handleSubmitCarData} />
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+}

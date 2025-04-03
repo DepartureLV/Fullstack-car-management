@@ -25,11 +25,11 @@ export default async function CardList() {
 
   if (data) {
     return (
-      <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data.map((car: Car) => (
           <Card key={car.id} data={car} />
         ))}
-      </>
+      </div>
     );
   }
 }
