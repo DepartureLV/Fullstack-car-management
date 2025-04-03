@@ -11,7 +11,7 @@ import {
   DialogClose,
 } from "./ui/dialog";
 import { Car } from "@/types/car";
-import { upsertCarData } from "@/services/carFormHandlers";
+import { upsertCarData } from "@/services/car";
 import Form from "./form";
 import { FormFieldProps } from "./form-field";
 import { Button } from "./ui/button";

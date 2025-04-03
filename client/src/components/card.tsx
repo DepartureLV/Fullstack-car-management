@@ -1,7 +1,7 @@
 "use client";
 
 import { Car } from "@/types/car";
-import { upsertCarData } from "@/services/carFormHandlers";
+import { upsertCarData } from "@/services/car";
 import {
   Dialog,
   DialogClose,
