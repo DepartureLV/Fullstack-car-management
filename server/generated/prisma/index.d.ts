@@ -857,17 +857,15 @@ export namespace Prisma {
 
   export type CarAvgAggregateOutputType = {
     id: number | null
-    carRegistrationNum: number | null
   }
 
   export type CarSumAggregateOutputType = {
     id: number | null
-    carRegistrationNum: number | null
   }
 
   export type CarMinAggregateOutputType = {
     id: number | null
-    carRegistrationNum: number | null
+    carRegistrationNum: string | null
     carBrand: string | null
     carModel: string | null
     notes: string | null
@@ -875,7 +873,7 @@ export namespace Prisma {
 
   export type CarMaxAggregateOutputType = {
     id: number | null
-    carRegistrationNum: number | null
+    carRegistrationNum: string | null
     carBrand: string | null
     carModel: string | null
     notes: string | null
@@ -893,12 +891,10 @@ export namespace Prisma {
 
   export type CarAvgAggregateInputType = {
     id?: true
-    carRegistrationNum?: true
   }
 
   export type CarSumAggregateInputType = {
     id?: true
-    carRegistrationNum?: true
   }
 
   export type CarMinAggregateInputType = {
@@ -1014,7 +1010,7 @@ export namespace Prisma {
 
   export type CarGroupByOutputType = {
     id: number
-    carRegistrationNum: number
+    carRegistrationNum: string
     carBrand: string
     carModel: string
     notes: string | null
@@ -1069,7 +1065,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      carRegistrationNum: number
+      carRegistrationNum: string
       carBrand: string
       carModel: string
       notes: string | null
@@ -1467,7 +1463,7 @@ export namespace Prisma {
    */ 
   interface CarFieldRefs {
     readonly id: FieldRef<"Car", 'Int'>
-    readonly carRegistrationNum: FieldRef<"Car", 'Int'>
+    readonly carRegistrationNum: FieldRef<"Car", 'String'>
     readonly carBrand: FieldRef<"Car", 'String'>
     readonly carModel: FieldRef<"Car", 'String'>
     readonly notes: FieldRef<"Car", 'String'>
@@ -1865,7 +1861,7 @@ export namespace Prisma {
     OR?: CarWhereInput[]
     NOT?: CarWhereInput | CarWhereInput[]
     id?: IntFilter<"Car"> | number
-    carRegistrationNum?: IntFilter<"Car"> | number
+    carRegistrationNum?: StringFilter<"Car"> | string
     carBrand?: StringFilter<"Car"> | string
     carModel?: StringFilter<"Car"> | string
     notes?: StringNullableFilter<"Car"> | string | null
@@ -1881,7 +1877,7 @@ export namespace Prisma {
 
   export type CarWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    carRegistrationNum?: number
+    carRegistrationNum?: string
     AND?: CarWhereInput | CarWhereInput[]
     OR?: CarWhereInput[]
     NOT?: CarWhereInput | CarWhereInput[]
@@ -1908,14 +1904,14 @@ export namespace Prisma {
     OR?: CarScalarWhereWithAggregatesInput[]
     NOT?: CarScalarWhereWithAggregatesInput | CarScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Car"> | number
-    carRegistrationNum?: IntWithAggregatesFilter<"Car"> | number
+    carRegistrationNum?: StringWithAggregatesFilter<"Car"> | string
     carBrand?: StringWithAggregatesFilter<"Car"> | string
     carModel?: StringWithAggregatesFilter<"Car"> | string
     notes?: StringNullableWithAggregatesFilter<"Car"> | string | null
   }
 
   export type CarCreateInput = {
-    carRegistrationNum: number
+    carRegistrationNum: string
     carBrand: string
     carModel: string
     notes?: string | null
@@ -1923,14 +1919,14 @@ export namespace Prisma {
 
   export type CarUncheckedCreateInput = {
     id?: number
-    carRegistrationNum: number
+    carRegistrationNum: string
     carBrand: string
     carModel: string
     notes?: string | null
   }
 
   export type CarUpdateInput = {
-    carRegistrationNum?: IntFieldUpdateOperationsInput | number
+    carRegistrationNum?: StringFieldUpdateOperationsInput | string
     carBrand?: StringFieldUpdateOperationsInput | string
     carModel?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -1938,7 +1934,7 @@ export namespace Prisma {
 
   export type CarUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    carRegistrationNum?: IntFieldUpdateOperationsInput | number
+    carRegistrationNum?: StringFieldUpdateOperationsInput | string
     carBrand?: StringFieldUpdateOperationsInput | string
     carModel?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -1946,14 +1942,14 @@ export namespace Prisma {
 
   export type CarCreateManyInput = {
     id?: number
-    carRegistrationNum: number
+    carRegistrationNum: string
     carBrand: string
     carModel: string
     notes?: string | null
   }
 
   export type CarUpdateManyMutationInput = {
-    carRegistrationNum?: IntFieldUpdateOperationsInput | number
+    carRegistrationNum?: StringFieldUpdateOperationsInput | string
     carBrand?: StringFieldUpdateOperationsInput | string
     carModel?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -1961,7 +1957,7 @@ export namespace Prisma {
 
   export type CarUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    carRegistrationNum?: IntFieldUpdateOperationsInput | number
+    carRegistrationNum?: StringFieldUpdateOperationsInput | string
     carBrand?: StringFieldUpdateOperationsInput | string
     carModel?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -2023,7 +2019,6 @@ export namespace Prisma {
 
   export type CarAvgOrderByAggregateInput = {
     id?: SortOrder
-    carRegistrationNum?: SortOrder
   }
 
   export type CarMaxOrderByAggregateInput = {
@@ -2044,7 +2039,6 @@ export namespace Prisma {
 
   export type CarSumOrderByAggregateInput = {
     id?: SortOrder
-    carRegistrationNum?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2099,20 +2093,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {

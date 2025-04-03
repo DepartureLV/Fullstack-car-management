@@ -14,7 +14,7 @@ app.get("/cars", async (_req, res) => {
   res.status(200).send(carCount);
 });
 
-// Insert new car
+// Upsert car
 app.post("/cars", async (req, res) => {
   const {
     carRegistrationNum,
@@ -22,7 +22,7 @@ app.post("/cars", async (req, res) => {
     carBrand,
     notes,
   }: {
-    carRegistrationNum: number;
+    carRegistrationNum: string;
     carModel: string;
     carBrand: string;
     notes: string;

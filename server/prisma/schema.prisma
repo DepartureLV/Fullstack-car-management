@@ -16,7 +16,7 @@ datasource db {
 
 model Car {
   id                  Int       @id @default(autoincrement())
-  carRegistrationNum  Int       @unique
+  carRegistrationNum  String       @unique
   carBrand            String
   carModel            String
   notes               String?
