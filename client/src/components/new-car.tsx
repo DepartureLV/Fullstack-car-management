@@ -8,12 +8,13 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "./ui/dialog";
 import { Car } from "@/types/car";
 import { upsertCarData } from "@/services/carFormHandlers";
 import Form from "./form";
 import { FormFieldProps } from "./form-field";
-import { handleUpsertCarData } from "@/services/carFormHandlers";
+import { Button } from "./ui/button";
 
 export default function NewCar() {
   const [newCarData, setNewCarData] = useState<Omit<Car, "id">>({
@@ -101,7 +102,16 @@ export default function NewCar() {
           <DialogDescription>
             Add a new car to your collection
           </DialogDescription>
-          <Form fields={carFormFields} handleSubmit={handleSubmitCarData} />
+          <Form
+            id="newCarForm"
+            fields={carFormFields}
+            handleSubmit={handleSubmitCarData}
+          />
+          <DialogClose asChild>
+            <Button form="newCarForm" type="submit" className="w-full">
+              Submit
+            </Button>
+          </DialogClose>
         </DialogHeader>
       </DialogContent>
     </Dialog>

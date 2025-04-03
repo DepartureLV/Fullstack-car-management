@@ -4,6 +4,7 @@ import { Car } from "@/types/car";
 import { upsertCarData } from "@/services/carFormHandlers";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -13,10 +14,9 @@ import {
 import Form from "./form";
 import { useState } from "react";
 import { FormFieldProps } from "./form-field";
-import { handleUpsertCarData } from "@/services/carFormHandlers";
+import { Button } from "./ui/button";
 
 export default function Card({ data }: { data: Car }) {
-  const [carData, setCarData] = useState(data);
   const [updatedCarData, setUpdatedCarData] = useState<Car>({
     ...data,
   });
@@ -99,7 +99,16 @@ export default function Card({ data }: { data: Car }) {
           <DialogHeader>
             <DialogTitle>Update your car</DialogTitle>
             <DialogDescription>Edit/Update your car details</DialogDescription>
-            <Form fields={carFormFields} handleSubmit={handleSubmitCarData} />
+            <Form
+              id="updateForm"
+              fields={carFormFields}
+              handleSubmit={handleSubmitCarData}
+            />
+            <DialogClose asChild>
+              <Button form="updateForm" type="submit" className="w-full">
+                Submit
+              </Button>
+            </DialogClose>
           </DialogHeader>
         </DialogContent>
       </Dialog>
