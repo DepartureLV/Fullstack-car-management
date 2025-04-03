@@ -1,7 +1,7 @@
 "use client";
 
 import { Car } from "@/types/car";
-import { upsertCarData } from "@/services/car";
+import { deleteCarData, upsertCarData } from "@/services/car";
 import {
   Dialog,
   DialogClose,
@@ -77,6 +77,16 @@ export default function Card({ data }: { data: Car }) {
 
     try {
       await upsertCarData(updatedCarData);
+      // other logic if needed
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDeleteCarData = async () => {
+    try {
+      await deleteCarData(data.id as string);
+      // other logic if needed
     } catch (error) {
       console.error(error);
     }
@@ -112,6 +122,8 @@ export default function Card({ data }: { data: Car }) {
           </DialogHeader>
         </DialogContent>
       </Dialog>
+
+      <Button onClick={handleDeleteCarData}>Delete</Button>
     </div>
   );
 }

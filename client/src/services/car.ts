@@ -45,3 +45,21 @@ export const upsertCarData = async (carData: Car): Promise<void> => {
     throw error;
   }
 };
+
+export const deleteCarData = async (id: string): Promise<void> => {
+  try {
+    const resp = await fetch(`${BASE_URL}/cars/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    revalidatePath("/cars");
+
+    if (!resp.ok) throw Error;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
