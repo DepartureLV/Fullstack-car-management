@@ -1,7 +1,11 @@
+.PHONY: setup
+setup: ## setup project to run locally
+	cd client && npm install
+	cd server && npm install
+
 .PHONY: run-dev-client
 run-dev-client: ## Start the Nextjs server
 	cd client && npm run dev
-
 
 .PHONY: run-dev-server
 run-dev-server: ## Start the server
