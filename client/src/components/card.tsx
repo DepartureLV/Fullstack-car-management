@@ -35,6 +35,7 @@ export default function Card({ data }: { data: Car }) {
           ...updatedCarData,
           carRegistrationNum: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "brand",
@@ -47,6 +48,7 @@ export default function Card({ data }: { data: Car }) {
           ...updatedCarData,
           carBrand: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "model",
@@ -59,6 +61,7 @@ export default function Card({ data }: { data: Car }) {
           ...updatedCarData,
           carModel: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "notes",
@@ -71,6 +74,7 @@ export default function Card({ data }: { data: Car }) {
           ...updatedCarData,
           notes: e.target.value,
         }),
+      optional: true,
     },
   ];
 

@@ -38,6 +38,7 @@ export default function NewCar() {
           ...newCarData,
           carRegistrationNum: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "brand",
@@ -50,6 +51,7 @@ export default function NewCar() {
           ...newCarData,
           carBrand: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "model",
@@ -62,6 +64,7 @@ export default function NewCar() {
           ...newCarData,
           carModel: e.target.value,
         }),
+      optional: false,
     },
     {
       id: "notes",
@@ -74,6 +77,7 @@ export default function NewCar() {
           ...newCarData,
           notes: e.target.value,
         }),
+      optional: true,
     },
   ];
 

@@ -5,12 +5,16 @@ export default function Form({
   fields,
   handleSubmit,
 }: {
-  id: string
+  id: string;
   fields: FormFieldProps[];
   handleSubmit: (e: React.FormEvent) => void;
 }) {
   return (
-    <form id={id} className="flex flex-col gap-4 text-left" onSubmit={handleSubmit}>
+    <form
+      id={id}
+      className="flex flex-col gap-4 text-left"
+      onSubmit={handleSubmit}
+    >
       {fields.map((field) => (
         <FormField
           key={field.id}
@@ -20,6 +24,7 @@ export default function Form({
           placeholder={field.placeholder}
           value={field.value}
           onChange={field.onChange}
+          optional={field.optional}
         />
       ))}
     </form>
