@@ -19,7 +19,9 @@ export default function FormField({
 }: FormFieldProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="brand">{label}</label>
+      <label htmlFor="brand" className="font-semibold">
+        {label}
+      </label>
       <Input
         type={type}
         id={id}

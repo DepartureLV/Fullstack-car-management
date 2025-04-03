@@ -15,6 +15,8 @@ import { upsertCarData } from "@/services/car";
 import Form from "./form";
 import { FormFieldProps } from "./form-field";
 import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
+import { Separator } from "./ui/separator";
 
 export default function NewCar() {
   const [newCarData, setNewCarData] = useState<Omit<Car, "id">>({
@@ -93,10 +95,14 @@ export default function NewCar() {
 
   return (
     <Dialog>
-      <DialogTrigger>New</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button className="flex gap-2 w-full hover:gap-3">
+          New <ArrowRight />
+        </Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-2xl md:text-5xl">
+          <DialogTitle className="text-2xl md:text-5xl text-primary">
             Add new car
           </DialogTitle>
           <DialogDescription>
@@ -107,6 +113,9 @@ export default function NewCar() {
             fields={carFormFields}
             handleSubmit={handleSubmitCarData}
           />
+
+          <Separator className="my-4" />
+
           <DialogClose asChild>
             <Button form="newCarForm" type="submit" className="w-full">
               Submit

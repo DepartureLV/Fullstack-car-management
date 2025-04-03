@@ -15,6 +15,8 @@ import Form from "./form";
 import { useState } from "react";
 import { FormFieldProps } from "./form-field";
 import { Button } from "./ui/button";
+import { CarFront, FileWarning, Trash } from "lucide-react";
+import { Separator } from "./ui/separator";
 
 export default function Card({ data }: { data: Car }) {
   const [updatedCarData, setUpdatedCarData] = useState<Car>({
@@ -93,37 +95,93 @@ export default function Card({ data }: { data: Car }) {
   };
 
   return (
-    <div className="flex flex-col bg-blue-700 p-4 rounded-lg text-white w-full">
-      <h1 className="text-xl p-0 m-0 font-semibold">
-        {data.carBrand} {data.carModel}
-      </h1>
-      <p>
-        car registration number:{" "}
-        <b className="text-bold">{data.carRegistrationNum}</b>
-      </p>
-      {data.notes && <p>{data.notes}</p>}
+    <div className="flex flex-col bg-white p-4 gap-4 rounded-lg w-full shadow-lg">
+      <div className="mb-auto">
+        <h1 className="text-xl text-primary !p-0 !m-0 font-semibold">
+          {data.carBrand} {data.carModel}
+        </h1>
 
-      <Dialog>
-        <DialogTrigger>Edit</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Update your car</DialogTitle>
-            <DialogDescription>Edit/Update your car details</DialogDescription>
-            <Form
-              id="updateForm"
-              fields={carFormFields}
-              handleSubmit={handleSubmitCarData}
-            />
-            <DialogClose asChild>
-              <Button form="updateForm" type="submit" className="w-full">
-                Submit
-              </Button>
-            </DialogClose>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+        <Separator className="my-2" />
 
-      <Button onClick={handleDeleteCarData}>Delete</Button>
+        <div className="flex gap-2 items-center">
+          <span>
+            <CarFront />
+          </span>
+          <p className="text-wrap">
+            Car registration number:{" "}
+            <b className="text-bold">{data.carRegistrationNum}</b>
+          </p>
+        </div>
+        <div className="flex gap-2 items-center">
+          <span>
+            <FileWarning />
+          </span>
+          <p>
+            Note: <b className="text-bold">{data.notes || "-"}</b>
+          </p>
+        </div>
+      </div>
+
+      <div className="flex justify-between w-full gap-4">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-full flex-1">Edit</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Update your car</DialogTitle>
+              <DialogDescription>
+                Edit/Update your car details
+              </DialogDescription>
+              <Form
+                id="updateForm"
+                fields={carFormFields}
+                handleSubmit={handleSubmitCarData}
+              />
+
+              <Separator className="my-4" />
+
+              <DialogClose asChild>
+                <Button form="updateForm" type="submit" className="w-full">
+                  Submit
+                </Button>
+              </DialogClose>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              className="text-destructive hover:text-destructive"
+            >
+              <Trash strokeWidth={3} />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete the
+                data
+              </DialogDescription>
+              <DialogClose asChild>
+                <Button
+                  variant={"destructive"}
+                  form="updateForm"
+                  type="submit"
+                  className="w-full"
+                  onClick={handleDeleteCarData}
+                >
+                  Delete
+                </Button>
+              </DialogClose>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   );
 }
