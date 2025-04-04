@@ -14,11 +14,16 @@
 <br/>
 
 ## Features
+![Screen Recording GIF (3)](https://github.com/user-attachments/assets/8747f508-d931-40ce-8137-0a2a6f73abd5)
 
 - Display car list
 - New Car Data
 - Update Car Data
 - Delete Car Data by car_id
+
+- fully responsive
+
+![Screen Recording GIF (4)](https://github.com/user-attachments/assets/7e449fd7-eb88-413e-a1ec-f8422387d3fb)
 
 ## Clone and run locally
 
