@@ -7,6 +7,7 @@
 <p align="center">
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
+  <a href="#testing"><strong>Testing</strong></a> ·
   <a href="#tech-stack"><strong>Tech stack</strong></a> ·
   <a href="#project-structure"><strong>Project Structure</strong></a> ·
   <a href="#feedback-and-issues"><strong>Feedback</strong></a>
@@ -33,6 +34,7 @@ you’ll need the following installed on your machine:
 ### Getting Started
 
 #### With Docker
+
 1. Clone the repo and rename `.env.example` in root to `.env.prod`, and rename `.env.example` in `client/` and `server/` to `.env`
 
 2. Everything else are already handled by `Makefile`. run this command on root
@@ -75,6 +77,16 @@ you will need PostgresQL installed on your machine
    ```
 
    this will start prisma studio on port 5555
+
+## Testing endpoints
+
+only cover APIs test at this moment.
+
+run
+
+```bash
+make test-api
+```
 
 ## Tech Stacks
 
